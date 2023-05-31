@@ -75,12 +75,15 @@
                 <div class="header-text">
                   <h6>¡Bienvenido!</h6>
                   <h4><em>PlantApp</em>  v1.0</h4>
+                    <p class="text-light">Esta aplicación web te permite reconocer el tipo de hoja de una planta a partir de una imagen.</p>
+                    <img id="image" src="https://cdn-icons-png.flaticon.com/128/2175/2175276.png" alt="..." style="width: 200px">
                   <hr>
                   <h6>Ingrese la URL de la imagen a reconocer:</h6>
-                  <input type="text" id="imageURL" placeholder="Ingrese la URL aquí">
+                  <input type="text" id="imageURL" placeholder="Ingrese la URL aquí"  onchange="image()">
                   <div class="main-button">
-                    <a href="#" id="searchButton">Buscar</a>
+                    <a href="#" id="searchButton" onclick="postRequest(),image()">Buscar</a>
                   </div>
+                  <h2 id="result">Resultado:</h2>
                 </div>
               </div>
             </div>
@@ -115,6 +118,33 @@
   <script src="assets/js/tabs.js"></script>
   <script src="assets/js/popup.js"></script>
   <script src="assets/js/custom.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function postRequest() {
+      const image = document.getElementById("imageURL").value;
+      const url = "https://back-inteligencia-production.up.railway.app/predict"; // Reemplaza con la URL de tu API
+      //const url = "http://192.168.10.104:5000/predict"; // Reemplaza con la URL de tu API
+      const data = {
+        url: image ,
+      };
+
+      axios.post(url, data)
+              .then(function (response) {
+                console.log(response.data);
+                document.getElementById("result").innerHTML = "Resultado: " + response.data.clase_de_hoja;
+              })
+              .catch(function (error) {
+                console.error(error);
+              });
+    }
+
+    function image() {
+      let img = document.getElementById("imageURL").value;
+      document.getElementById("image").src = img;
+
+    }
+  </script>
 
 </body>
 
