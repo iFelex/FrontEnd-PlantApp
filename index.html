@@ -73,17 +73,26 @@
             <div class="row">
               <div class="col-lg-7">
                 <div class="header-text">
+                  <div style="display: flex">
+
+                  <div>
                   <h6>¡Bienvenido!</h6>
                   <h4><em>PlantApp</em>  v1.0</h4>
                     <p class="text-light">Esta aplicación web te permite reconocer el tipo de hoja de una planta a partir de una imagen.</p>
-                    <img id="image" src="https://cdn-icons-png.flaticon.com/128/2175/2175276.png" alt="..." style="width: 200px">
                   <hr>
                   <h6>Ingrese la URL de la imagen a reconocer:</h6>
                   <input type="text" id="imageURL" placeholder="Ingrese la URL aquí"  onchange="image()">
                   <div class="main-button">
                     <a href="#" id="searchButton" onclick="postRequest(),image()">Buscar</a>
+                    <h2 id="result">Resultado:</h2>
                   </div>
-                  <h2 id="result">Resultado:</h2>
+                  </div>
+                    <div style="padding-left: 50%; padding-top: 25%">
+                      <img id="image" src="https://cdn-icons-png.flaticon.com/128/2175/2175276.png" alt="..." style="width: 200px">
+                    </div>
+
+                  </div>
+
                 </div>
               </div>
             </div>
